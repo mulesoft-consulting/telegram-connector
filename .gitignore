@@ -6,3 +6,5 @@ catalog/
 src/main/api/.repository/
 src/main/api/.gitignore
 velocity.log
+target/
+.idea/
