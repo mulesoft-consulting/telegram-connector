@@ -1,0 +1,19 @@
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:mule-telegram="http://www.mulesoft.org/schema/mule/mule-telegram"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+          http://www.mulesoft.org/schema/mule/mule-telegram http://www.mulesoft.org/schema/mule/mule-telegram/current/mule-mule-telegram.xsd">
+
+    <mule-telegram:config name="config" configId="configId">
+        <mule-telegram:connection requiredParameter="aValue" />
+    </mule-telegram:config>
+
+    <flow name="sayHiFlow">
+        <mule-telegram:say-hi person="Mariano Gonzalez"/>
+    </flow>
+
+    <flow name="retrieveInfoFlow">
+        <mule-telegram:retrieve-info config-ref="config"/>
+    </flow>
+
+</mule>
