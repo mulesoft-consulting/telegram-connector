@@ -1,5 +1,6 @@
 package org.mule.extension.mule.telegram.internal;
-import java.io.InputStream;
+
+
 import org.mule.runtime.http.api.HttpConstants;
 import org.mule.runtime.http.api.HttpService;
 import org.mule.runtime.http.api.client.HttpClient;
@@ -14,15 +15,18 @@ import java.util.concurrent.TimeoutException;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * This class represents an extension connection just as example (there is no real connection with anything here c:).
  */
 public final class TelegramConnection {
 
-  private TelegramConfiguration genConfig;
-  private HttpClient httpClient;
-  private HttpRequestBuilder httpRequestBuilder;
-
+   private static final Logger LOGGER = LoggerFactory.getLogger(TelegramConnection.class);
+   private TelegramConfiguration genConfig;
+   private HttpClient httpClient;
+   private HttpRequestBuilder httpRequestBuilder;
 
   public TelegramConnection(HttpService httpService, TelegramConfiguration gConfig) {
     genConfig = gConfig;
@@ -71,5 +75,34 @@ public final class TelegramConnection {
     }
     return null;
   }
+
+  public InputStream getUpdates(String chatId, boolean watermark, String lastUpdateId){
+      HttpResponse httpResponse = null;
+      String strUri = genConfig.getHost()+":"+genConfig.getPort()+"/bot"+genConfig.getToken()+"/getUpdates";
+
+      MultiMap<String, String> qParams = new MultiMap<String, String>();
+      qParams.put("chat_id", chatId);
+      if(watermark && lastUpdateId != null) {
+          qParams.put("offset", lastUpdateId);
+      }
+
+      HttpRequest request = httpRequestBuilder
+              .method("GET")
+              .uri(strUri)
+              .queryParams(qParams)
+              .build();
+      try {
+        httpResponse = httpClient.send(request,genConfig.getTimeout(),false,null);
+        return httpResponse.getEntity().getContent();
+      } catch (IOException e) {
+        e.printStackTrace();
+      } catch (TimeoutException e) {
+        e.printStackTrace();
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      return null;
+  }
+
 
 }
