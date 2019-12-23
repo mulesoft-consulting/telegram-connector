@@ -31,6 +31,17 @@ The following Maven commands are required during development phase
 - Create Telegram connection configuration
 - Configure the operation
 
+#### Operations
+
+#### Send Message
+This operation sends a message to a certain chat ID. Both parameters that this operation receives, chat id and payload (message), accept flat values and dataweave expressions. The only thing that needs to be taken into account is that the message must contain a text-based mimetype (i.e. "text/plain"), but the connector will try to parse the structure of the message sent using getters and setters that are not defined within the operation because they depend on the message.
+
+
+#### Get Updates
+This operation serves to obtain all the updates of a certain chat and is based on a polling source, which means that every X time, whether for a fixed polling value or a given cron expression, the connector will obtain the updates. This operation supports watermarking, simply by activating the "watermark" option in the operation. This watermark is based on the update_id provided by the Telegram API and cannot be modified to add another criterion. Unlike other watermark mechanisms, it does not retrieve all records and then filters the desired ones, but uses the paging query parameters offered by Telegram.
+
+
+
 ### Used Dependencies
 This connector relies in the Mule HTTP module to perform the HTTP interactions with the Telegram API, however, other library is used: org.json. It is used to handle the HTTP response and to extract useful information for operations, such as the watermarking implemented in the get updates operation.
 
