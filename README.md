@@ -34,7 +34,7 @@ The following Maven commands are required during development phase
 #### Operations
 
 #### Send Message
-This operation sends a message to a certain chat ID. Both parameters that this operation receives, chat id and payload (message), accept flat values and dataweave expressions. The only thing that needs to be taken into account is that the message must contain a text-based mimetype (i.e. "text/plain"), but the connector will try to parse the structure of the message sent using getters and setters that are not defined within the operation because they depend on the message.
+This operation sends a message to a certain chat ID. Both parameters that this operation receives, chat id and payload (message), accept flat values and dataweave expressions. The only thing that needs to be taken into account is that the message must contain a text-based mimetype (i.e. "text/plain"), or the connector will try to parse the structure of the message sent using getters and setters that are not defined within the operation because they depend on the message structure.
 
 
 #### Get Updates
