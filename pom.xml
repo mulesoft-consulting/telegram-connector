@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mulesoft.connectors</groupId>
     <artifactId>mule-telegram-connector</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.0</version>
     <packaging>mule-extension</packaging>
     <name>Telegram</name>
 
@@ -22,7 +22,6 @@
         <httpServiceApiVersion>4.1.1</httpServiceApiVersion>
         <muleCoreVersion>4.1.1</muleCoreVersion>
         <schedulerServiceVersion>1.1.2</schedulerServiceVersion>
-        <javaxWsRsApiVersion>2.1</javaxWsRsApiVersion>
         <orgJsonVersion>20190722</orgJsonVersion>
     </properties>
 
@@ -59,11 +58,6 @@
             <artifactId>mule-service-http-api</artifactId>
             <version>${httpServiceApiVersion}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.ws.rs</groupId>
-            <artifactId>javax.ws.rs-api</artifactId>
-            <version>${javaxWsRsApiVersion}</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>

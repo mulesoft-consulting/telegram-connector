@@ -95,11 +95,10 @@ public class UpdatesListener extends PollingSource<String, Void> {
                     responseStrBuilder.append(line);
                 }
                 JSONObject jsonObject = new JSONObject(responseStrBuilder.toString());
-                LOGGER.debug("payload size: " + jsonObject.length());
+                LOGGER.trace("payload: " + jsonObject.toString(3));
                 JSONArray arrayResults = jsonObject.getJSONArray("result");
                 if (arrayResults.length() > 0) {
                     JSONObject lastObj = arrayResults.getJSONObject(arrayResults.length() - 1);
-                    LOGGER.debug("payload: " + lastObj.toString(3));
                     lastUpdateId = String.valueOf(lastObj.getInt("update_id")+1);
                 }
                 LOGGER.debug("Watermark is using lastUpdateId: " + lastUpdateId);
