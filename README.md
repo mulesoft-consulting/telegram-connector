@@ -55,4 +55,4 @@ Just fork the repo, make your updates and open a pull request!
 
  - Write Tests
  - Provide Usage Examples
- - Add capabilities, like send voicee or send video operations.
+ - Add capabilities, like send voice or send video operations.
