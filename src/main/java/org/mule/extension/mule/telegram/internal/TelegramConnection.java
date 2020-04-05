@@ -26,7 +26,6 @@ public final class TelegramConnection {
    private static final Logger LOGGER = LoggerFactory.getLogger(TelegramConnection.class);
    private TelegramConfiguration genConfig;
    private HttpClient httpClient;
-   private HttpRequestBuilder httpRequestBuilder;
 
   public TelegramConnection(HttpService httpService, TelegramConfiguration gConfig) {
     genConfig = gConfig;
@@ -37,7 +36,6 @@ public final class TelegramConnection {
     HttpClientConfiguration.Builder builder = new HttpClientConfiguration.Builder();
     builder.setName("telegram");
     httpClient = httpService.getClientFactory().create(builder.build());
-    httpRequestBuilder = HttpRequest.builder();
     httpClient.start();
   }
 
@@ -57,7 +55,7 @@ public final class TelegramConnection {
     qParams.put("chat_id", chatId);
     qParams.put("text", message);
 
-    HttpRequest request = httpRequestBuilder
+    HttpRequest request = HttpRequest.builder()
             .method("GET")
             .uri(strUri)
             .queryParams(qParams)
@@ -73,6 +71,7 @@ public final class TelegramConnection {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    
     return null;
   }
 
@@ -86,7 +85,7 @@ public final class TelegramConnection {
           qParams.put("offset", lastUpdateId);
       }
 
-      HttpRequest request = httpRequestBuilder
+      HttpRequest request = HttpRequest.builder()
               .method("GET")
               .uri(strUri)
               .queryParams(qParams)
