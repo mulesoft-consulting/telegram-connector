@@ -53,6 +53,7 @@ public class UpdatesListener extends PollingSource<String, Void> {
 
 
     @Parameter
+    @Optional
     protected String chatId;
 
     @Parameter
