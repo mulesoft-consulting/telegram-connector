@@ -8,3 +8,6 @@ src/main/api/.gitignore
 velocity.log
 target/
 .idea/
+bin/
+.settings/
+.project
