@@ -22,7 +22,7 @@
         <httpServiceApiVersion>4.1.1</httpServiceApiVersion>
         <muleCoreVersion>4.1.1</muleCoreVersion>
         <schedulerServiceVersion>1.1.2</schedulerServiceVersion>
-        <orgJsonVersion>20190722</orgJsonVersion>
+        <orgJsonVersion>20230227</orgJsonVersion>
     </properties>
 
 
